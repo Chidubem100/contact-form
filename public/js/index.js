@@ -3,7 +3,7 @@ let name = document.getElementById('name');
 let email = document.getElementById('email');
 let subject = document.getElementById('subject');
 let message = document.getElementById('message');
-
+let span = document.getElementById('f-span');
 
 
 
@@ -26,13 +26,16 @@ contactForm.addEventListener('submit', (e) =>{
         console.log(xhr.responseText)
 
         if(xhr.responseText === 'success'){
-            alert('email sent')
+            // alert('email sent')
+            span.innerHTML = `Message sent successfully`
+            console.log(span)
             name.value = '';
             email.value = '';
             subject.value = '';
             message.value = '';
         }else{
-            alert("something went wrong")
+            span.innerHTML = `Something went wrong, please try again`
+            // alert("something went wrong")
         }
     }
     xhr.send(JSON.stringify(formData));

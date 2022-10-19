@@ -18,38 +18,29 @@ app.get('/contact', (req,res) =>{
 
 app.post('/contact', (req,res) =>{
     console.log(req.body)
-    // for gmail
-    // const transporter = nodemailer.createTransport({
-    //     service: "gmail",
-    //     auth: {
-    //         user: "gmailusername",
-    //         pass: "gmail password"
-    //     }
-    // });
 
-    // for other services
     const transporter = nodemailer.createTransport({
-        host: " providers host",
-        port: "selected port by provider",
-        secure: "true",
+        pool: true,
+        host: "smtp.google.com",
+        port: 587,
+        secure: true, // use TLS
         auth: {
-            user: "gmailusername",
-            pass: "gmail password"
-        }
+            user: "dubemernest23@gmail.com",
+            pass: "08178667723"
+        },
     });
+      
 
     const mailOptions = {
-        from: req.body.email,
-        // change the 'to', to the email you want to use to recieve it 
-        to: "myemail@gmail.com",   
+        from: req.body.email, 
+        to: "dubemernest23@gmail.com",   
         subject:  `Message from ${req.body.email}: ${req.body.subject}`,
         text: req.body.message
     }
 
-    transporter.sendMail(mailOptions, (error, info) =>{
-        if (error) {
-            console.log(error)
-            res.send('error')
+    transporter.sendMail(mailOptions, (err, info) =>{
+        if (err) {
+            console.log(err)
         } else {
             console.log('Email sent: ' + info.response)
         }
