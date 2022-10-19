@@ -25,15 +25,15 @@ app.post('/contact', (req,res) =>{
         port: 587,
         secure: true, // use TLS
         auth: {
-            user: "dubemernest23@gmail.com",
-            pass: "08178667723"
+            user: "your gmail username",
+            pass: "your gmail password"
         },
     });
       
 
     const mailOptions = {
         from: req.body.email, 
-        to: "dubemernest23@gmail.com",   
+        to: "your gmail username",   
         subject:  `Message from ${req.body.email}: ${req.body.subject}`,
         text: req.body.message
     }
